@@ -10,7 +10,7 @@ use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Component\Serializer\SerializerInterface;
-
+#[Route('/api')]
 class DictonController extends AbstractController
 {
     #[Route('/dicton', name: 'app_dicton', methods: ['GET'])]

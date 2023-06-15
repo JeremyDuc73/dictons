@@ -7,7 +7,7 @@ use App\Repository\AuthorRepository;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
-
+#[Route('/api')]
 class AuthorController extends AbstractController
 {
     #[Route('/author', name: 'app_author')]

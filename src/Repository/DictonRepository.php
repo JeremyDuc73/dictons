@@ -54,13 +54,22 @@ class DictonRepository extends ServiceEntityRepository
 //        ;
 //    }
 
-//    public function findOneBySomeField($value): ?Dicton
-//    {
-//        return $this->createQueryBuilder('d')
-//            ->andWhere('d.exampleField = :val')
-//            ->setParameter('val', $value)
-//            ->getQuery()
-//            ->getOneOrNullResult()
-//        ;
-//    }
+    public function countByYear($year): int
+    {
+        $jan1st = new \DateTime($year.'-01-01');
+
+
+        $dec31th = new \DateTime($year.'-12-31');
+
+
+        return count($this->createQueryBuilder('dicton')
+            ->andWhere('dicton.createdAt >= :val')
+            ->setParameter('val', $jan1st)
+
+            ->andWhere('dicton.createdAt <= :maxval')
+            ->setParameter('maxval', $dec31th)
+            ->getQuery()
+            ->getResult()
+        );
+    }
 }

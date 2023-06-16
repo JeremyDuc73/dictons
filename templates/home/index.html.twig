@@ -1,0 +1,38 @@
+{% extends 'base.html.twig' %}
+    {% block title %}Les dictons{% endblock %}
+
+{% block body %}
+    <div>
+        <h2>Nombre de dictons : {{ pagination.getTotalItemCount }}</h2>
+
+    </div>
+    {% set message = "Hello everyone" %}
+    {{ message | trans }}
+    <br>
+    <a href="{{ path('app_home', {_locale: 'es'}) }}" class="btn btn-success">SPANISH</a>
+    <a href="{{ path('app_home', {_locale: 'fr'}) }}" class="btn btn-success">FRENCH</a>
+    <a href="{{ path('app_home', {_locale: 'en'}) }}" class="btn btn-success">ENGLISH</a>
+
+    <table class="table">
+        <thead class="thead-dark border border-dark">
+        <tr>
+            <th scope="col">Content</th>
+            <th scope="col">Author</th>
+            <th scope="col">Date</th>
+        </tr>
+        </thead>
+        <tbody>
+        {% for dicton in pagination %}
+            <tr {% if loop.index is odd %}class="color"{% endif %}>
+                <td>{{ dicton.content }}</td>
+                <td>{{ dicton.author.name }}</td>
+                <td>{{ dicton.createdAt.format('Y-m-d') }}</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+    <div class="navigation">
+        {{ knp_pagination_render(pagination) }}
+    </div>
+
+{% endblock %}
